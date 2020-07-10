@@ -10,7 +10,8 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm install-cy-libs
+            - run: npm ci
+            - run: npm build
             - run: npm test
 workflows:
     build-and-test:
