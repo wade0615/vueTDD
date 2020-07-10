@@ -5,9 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "install-cy-libs": "apt-get install libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb",
+    "test": "vue-cli-service test:e2e --headless; vue-cli-service test:unit",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "vue-cli-service test:e2e --headless; vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
