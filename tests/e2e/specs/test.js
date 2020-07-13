@@ -27,6 +27,19 @@ describe('輸入欄位應該在輸入代辦事項後清空', () => {
 
     cy.get('.new-todo').type(todo).type('{enter}')
     cy.get('.new-todo').should('be.empty')
-    
+  })
+})
+
+describe('建立新代辦事項後應該出現代辦事項列表', () => {
+  const todo = 'This is new todo'
+  it('third e2e', () => {
+    cy.visit('http://localhost:8080')
+    cy.wait(500)
+    cy.get('#app')
+
+    cy.get('.new-todo').type(todo).type('{enter}')
+    cy.wait(1000)
+    cy.get('.todo-list > .todo:first-child').should('be.visible')
+    cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
   })
 })
