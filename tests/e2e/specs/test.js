@@ -54,3 +54,19 @@ describe('當沒有代辦事項時列表應該隱藏', () => {
     cy.get('.main').should('not.be.visible')
   })
 })
+
+describe('當完成代辦事項後應標記為已完成', () => {
+  const todo = 'This is new todo'
+  it('fifth e2e', () => {
+    cy.visit('http://localhost:8080')
+    cy.wait(500).get('#app').should('be.visible')
+
+    cy.get('.new-todo').type(todo).type('{enter}')
+    cy.wait(1000)
+    cy.get('.todo-list > .todo:first-child').should('be.visible')
+    cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
+
+    cy.get('.todo-list > .todo:first-child > .view > .toggle').click()
+    cy.get('.todo-list > .todo:first-child').should('have.class', 'completed')
+  })
+})
