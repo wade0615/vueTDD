@@ -70,3 +70,20 @@ describe('當完成代辦事項後應標記為已完成', () => {
     cy.get('.todo-list > .todo:first-child').should('have.class', 'completed')
   })
 })
+
+describe('應可從列表上刪除代辦事項', () => {
+  const todo = 'This is new todo'
+  it('six e2e', () => {
+    cy.visit('http://localhost:8080')
+    cy.wait(500).get('#app').should('be.visible')
+
+    cy.get('.new-todo').type(todo).type('{enter}')
+    cy.wait(1000)
+    cy.get('.todo-list > .todo:first-child').should('be.visible')
+    cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
+
+    cy.get('.todo-list > .todo:first-child').trigger('mouseover')
+    cy.get('.todo-list > .todo:first-child > .view > button.destroy').click({ force: true })
+    cy.get('.todo-list > .todo:first-child').should('not.exist')
+  })
+})
