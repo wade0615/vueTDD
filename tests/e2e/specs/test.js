@@ -43,3 +43,14 @@ describe('建立新代辦事項後應該出現代辦事項列表', () => {
     cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
   })
 })
+
+describe('當沒有代辦事項時列表應該隱藏', () => {
+  it('fourth e2e', () => {
+    cy.visit('http://localhost:8080')
+    cy.wait(500)
+    cy.get('#app')
+
+    cy.wait(1000)
+    cy.get('.main').should('not.be.visible')
+  })
+})
