@@ -87,3 +87,20 @@ describe('應可從列表上刪除代辦事項', () => {
     cy.get('.todo-list > .todo:first-child').should('not.exist')
   })
 })
+
+describe('重整頁面之後應該看到新增的待辦事項', () => {
+  const todo = 'This is new todo'
+  it('seven e2e', () => {
+    //show
+    cy.visit('http://localhost:8080')
+    cy.wait(500).get('#app').should('be.visible')
+    //addTodo
+    cy.get('.new-todo').type(todo).type('{enter}')
+    cy.wait(1000)
+    cy.get('.todo-list > .todo:first-child').should('be.visible')
+    cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
+    //check first todo item
+    cy.reload()
+    cy.get('.todo-list > .todo:first-child > .view > label').should('have.text', todo)
+  })
+})
