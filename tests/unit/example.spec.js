@@ -26,3 +26,16 @@ describe('Store', () => {
     expect(actual).toEqual(expected);
   });
 });
+
+it('應可儲存資料到 localStorage 中', function () {
+  // arrange
+  const STORAGE_KEY = 'vue-todomvc';
+  const expected = '["test"]';
+
+  // act
+  store.save(['test']);
+
+  // assert
+  const actual = localStorage.getItem(STORAGE_KEY);
+  expect(actual).toEqual(expected);
+});
